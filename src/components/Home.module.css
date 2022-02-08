@@ -1,15 +1,13 @@
 .home {
   width: 100vw;
   height: 100vh;
-  background-color: pink;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.h1 {
-}
+
 .planBigBox {
   width: 80vw;
   height: 80vw;
@@ -21,4 +19,12 @@
   grid-template-columns: repeat(3, 1fr);
   row-gap: 1px;
   column-gap: 1px;
+}
+
+@media print {
+  .h1,
+  form,
+  button {
+    display: none;
+  }
 }

@@ -1,26 +1,21 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { isCompositeComponentWithType } from "react-dom/cjs/react-dom-test-utils.development";
 import { useForm } from "react-hook-form";
 import styles from "./Home.module.css";
 import PlanBox from "./PlanBox";
+import "@fortawesome/fontawesome-free/js/all.js";
 
 const Home = (props) => {
-  const { register, handleSubmit, setValue } = useForm();
-  const [plan, setPlan] = useState("");
+  const { register, handleSubmit, setValue, setFocus } = useForm();
   const [currentTarget, setCurrentTarget] = useState("");
-  const formInput = useRef();
   const onSubmit = ({ userPlan }) => {
-    console.dir(userPlan);
-    setPlan(userPlan);
     currentTarget.innerHTML = userPlan;
-
     setValue("userPlan", "");
   };
   const onClick = (e) => {
     if (e.target.children.length === 0) {
       setCurrentTarget(e.target);
-      console.dir(e.target);
-      formInput.current.focus();
+      setFocus("userPlan");
     } else {
       console.log("제대로눌러라");
     }
@@ -41,14 +36,17 @@ const Home = (props) => {
         <PlanBox />
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          {...register("userPlan")}
-          ref={formInput}
-          type="text"
-          placeholder="my aim"
-        />
+        <input {...register("userPlan")} type="text" placeholder="my aim" />
         <button>upload</button>
       </form>
+      <button
+        onClick={() => {
+          window.print();
+        }}
+        title="print"
+      >
+        <i className="fas fa-print"></i>
+      </button>
     </div>
   );
 };
