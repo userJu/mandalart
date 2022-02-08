@@ -1,0 +1,11 @@
+.planBox {
+  border: 1px solid black;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.plan {
+  border: 1px solid black;
+  cursor: pointer;
+}
